@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Reporte</title>
+    <!-- Agrega aquí tus enlaces a CSS o Bootstrap si los necesitas -->
+</head>
+
+<body>
+    <a href="index.php" class="btn btn-secondary">Volver a la página principal</a>
+
+    <!-- Formulario de búsqueda de cliente por CIF -->
+    <form action="" method="post">
+        <label for="cif_cliente_busqueda">Buscar Cliente por CIF:</label>
+        <input type="text" id="cif_cliente_busqueda" name="cif_cliente_busqueda" required>
+        <button type="submit" name="buscar_cliente">Buscar</button>
+    </form>
+
+    <!-- Mensajes de éxito o error -->
+    <?php if (isset($mensaje)): ?>
+    <p>
+        <?php echo $mensaje; ?>
+    </p>
+    <?php endif; ?>
+
+    <h2>Agregar Reporte</h2>
+    <!-- Formulario de agregar reporte -->
+    <form action="" method="post">
+        <!-- Campo oculto para el ID de usuario -->
+        <input type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">
+
+        <!-- Verificar si se encontró un cliente y prellenar el formulario -->
+        <?php if (isset($clienteEncontrado)) : ?>
+        <label for="nombre_cliente">Nombre Cliente:</label>
+        <input type="text" id="nombre_cliente" name="nombre_cliente"
+            value="<?php echo $clienteEncontrado['nombre_cliente']; ?>" required readonly>
+
+        <label for="cif_cliente">CIF Cliente:</label>
+        <input type="text" id="cif_cliente" name="cif_cliente" value="<?php echo $clienteEncontrado['cif']; ?>" required
+            readonly>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" value="<?php echo $clienteEncontrado['direccion']; ?>"
+            required readonly>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono" value="<?php echo $clienteEncontrado['telefono']; ?>" required
+            readonly>
+        <?php else : ?>
+        <label for="cif_cliente">CIF Cliente:</label>
+        <input type="text" id="cif_cliente" name="cif_cliente" required>
+        <?php endif; ?>
+
+        <!-- Campos para el reporte -->
+        <label for="id_equipo">ID Equipo:</label>
+        <input type="number" id="id_equipo" name="id_equipo" required>
+
+        <label for="id_tipo_servicio">ID Tipo Servicio:</label>
+        <input type="number" id="id_tipo_servicio" name="id_tipo_servicio" required>
+
+        <label for="id_frecuencia_servicio">ID Frecuencia Servicio:</label>
+        <input type="number" id="id_frecuencia_servicio" name="id_frecuencia_servicio" required>
+
+        <label for="id_parametros_electricos">ID Parámetros Eléctricos:</label>
+        <input type="number" id="id_parametros_electricos" name="id_parametros_electricos" required>
+
+        <label for="id_baterias">ID Baterías:</label>
+        <input type="number" id="id_baterias" name="id_baterias" required>
+
+        <label for="id_revision_elementos">ID Revisión de Elementos:</label>
+        <input type="number" id="id_revision_elementos" name="id_revision_elementos" required>
+
+        <label for="id_revision_baterias">ID Revisión de Baterías:</label>
+        <input type="number" id="id_revision_baterias" name="id_revision_baterias" required>
+
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required>
+
+        <!-- Botón para enviar el formulario -->
+        <button type="submit" name="guardar_reporte">Agregar Reporte</button>
+    </form>
+</body>
+
+</html>
